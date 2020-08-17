@@ -6,11 +6,9 @@
 
 :root {
     --font-primary: Roboto;
-    
     /* set base values */
     --text-base-size: 1em;
     --text-scale-ratio: 1.2;
-
     /* type scale */
     --text-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
     --text-sm: calc(1em / var(--text-scale-ratio));
@@ -19,11 +17,9 @@
     --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
     --text-xxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
     --text-xxxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
-
     /* line-height */
     --heading-line-height: 1.2;
     --body-line-height: 1.4;
-
     /* spacing values */
     --space-xxxs: 0.25em;
     --space-xxs: 0.375em;
@@ -34,13 +30,11 @@
     --space-xl: 3.25em;
     --space-xxl: 5.25em;
     --space-xxxl: 8.5em;
-
     /* colors */
     --ivory: #FFFFF0;
     --black: #000000;
     --primary-color: #64A653;
     --primary-color-light: #95D881;
-
     /* color-text */
     --color-text: var(--black);
     --color-text-heading: var(--black);
@@ -57,8 +51,6 @@ html {
 *, *::before, *::after {
     box-sizing: inherit;
 }
-
-
 
 /* ---------------------------
 
@@ -79,7 +71,14 @@ h1, h2, h3, h4, form legend {
     line-height: var(--heading-line-height);
 }
 
+ul, ol {
+    margin: 0px;
+    padding: 0px;
+
+}
+
 /* text size */
+
 .text--xxxl {
     font-size: var(--text-xxxl);
 }
@@ -163,45 +162,53 @@ u {
 
 ------------------------------ */
 
-
-.body-wrapper, .nav-wrapper, .footer-wrapper {
+.body-wrapper, .footer-wrapper {
     display: grid;
-    grid-auto-rows: minmax(2rem, auto);
+    grid-auto-rows: minmax(auto, auto);
 }
 
 /* handset */
-@media (min-width: 0px) {
-    .body-wrapper {
-        grid-template-columns: repeat(4, [col-start] 1fr);
-        margin: 0px 16px;
-        column-gap: 16px;
-    }
 
-    .header-box {
-        grid-column: col-start / -1;
-        grid-row: 3 / 9;
-    }
+.body-wrapper {
+    grid-template-columns: repeat(4, [col-start] 1fr);
+    margin: 0px 16px;
+    column-gap: 16px;
+}
 
-    .item1-box {
-        grid-column: col-start 1 / -1;
-        grid-row: 18 / 24;
-    }
-    
-    .item2-box {
-        grid-column: col-start 1 / -1;
-        grid-row: 26 / 32;
-    }
-    
+.body-wrapper>* {
+    grid-column: col-start / -1;
+}
+
+.header-box {
+    grid-row: 1 / 4;
+}
+
+.item1-box {
+    grid-row: 18 / 24;
+}
+
+.item2-box {
+    grid-row: 26 / 32;
+}
+
+.nav-wrapper > .content {
+    grid-row: 1 / 5;
+}
+
+.footer-box {
+    grid-row: 10 / 15;
 }
 
 /* small tablet */
+
 @media (min-width: 600px) {
     .body-wrapper {
         grid-template-columns: repeat(8, [col-start] 1fr);
-    }  
+    }
 }
 
 /* large tablet */
+
 @media (min-width: 720px) {
     .body-wrapper {
         grid-template-columns: repeat(8, [col-start] 1fr);
@@ -211,30 +218,16 @@ u {
 }
 
 /* desktop */
+
 @media (min-width: 840px) {
     .body-wrapper {
         grid-template-columns: repeat(12, [col-start] 1fr);
     }
-    
     :root {
         --text-base-size: 1.25em;
         --text-scale-ratio: 1.25;
     }
 }
-
-
-.nav-wrapper > .content {
-    grid-column: col-start -1 / -1;
-    grid-row: 1 / 5;
-}
-
-
-.footer-box {
-    grid-column: col-start / -1;
-    grid-row: 10 / 20;
-
-}
-
 
 /*----------------------------
 
@@ -242,17 +235,37 @@ u {
 
 ------------------------------ */
 
-.content {
-    display: flex;
-    padding: 1rem;
-}
 
-.nav-wrapper > .content {
+.main-nav-wrapper>.content {
     background-color: lightseagreen;
     margin-bottom: 0px;
 }
 
-.header-box {
+.main-nav-wrapper ul {
+    display: flex;
+    list-style: none;
+    margin: 0 -10px;
+}
+
+.main-nav-wrapper li {
+    margin: 0 10px;
+}
+
+.main-nav-wrapper .push-right {
+    margin-left: auto;
+}
+
+.main-nav-wrapper .logo {
+    width: 100px;
+    height: auto;
+}
+
+.body-wrapper>.content {
+    flex-flow: column;
+    align-items: center;
+}
+
+/* .header-box {
     background-color: indianred;
 }
 
@@ -262,8 +275,7 @@ u {
 
 .item2-box {
     background-color: lightskyblue;
-}
-
+} */
 
 .footer-box {
     background-color: lightsalmon;
